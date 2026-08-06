@@ -6,9 +6,7 @@ import { getDemoDashboard, getDemoTopCampaigns, DEMO_ANALYTICS, type DashboardSu
 
 const isDemo = () => localStorage.getItem('demo') === 'true';
 
-const PLATFORM_COLORS: Record<string, string> = {
-  INMOBI: '#6366f1', GOOGLE_ADS: '#34d399', META_ADS: '#f59e0b', LINKEDIN: '#3b82f6', TIKTOK: '#ec4899',
-};
+
 
 export default function Dashboard() {
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
