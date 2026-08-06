@@ -3,7 +3,7 @@ export interface Campaign {
   name: string;
   budget: number;
   status: 'DRAFT' | 'RUNNING' | 'PAUSED' | 'COMPLETED';
-  platform: 'GOOGLE_ADS' | 'META_ADS' | 'INMOBI' | 'LINKEDIN' | 'TIKTOK';
+  platform: 'GOOGLE_ADS' | 'META_ADS' | 'TABOOLA' | 'LINKEDIN' | 'TIKTOK';
   targetAudience: string;
   category: string;
   startDate: string;
@@ -40,12 +40,12 @@ export interface DashboardSummary {
 // ── Demo seed data ────────────────────────────────────────────────────────────
 
 export const DEMO_CAMPAIGNS: Campaign[] = [
-  { id: 1, name: 'InMobi Summer Blast', budget: 12000, status: 'RUNNING', platform: 'INMOBI', targetAudience: 'Mobile Gamers 18-35', category: 'Gaming', startDate: '2026-07-01', endDate: '2026-08-31' },
-  { id: 2, name: 'Google Search Max', budget: 8500, status: 'RUNNING', platform: 'GOOGLE_ADS', targetAudience: 'E-Commerce Shoppers', category: 'Retail', startDate: '2026-07-15', endDate: '2026-09-15' },
+  { id: 1, name: 'Taboola Native Summer Blast', budget: 12000, status: 'RUNNING', platform: 'TABOOLA', targetAudience: 'Mobile Gamers 18-35', category: 'Gaming', startDate: '2026-07-01', endDate: '2026-08-31' },
+  { id: 2, name: 'Google Search Max Q3', budget: 8500, status: 'RUNNING', platform: 'GOOGLE_ADS', targetAudience: 'E-Commerce Shoppers', category: 'Retail', startDate: '2026-07-15', endDate: '2026-09-15' },
   { id: 3, name: 'Meta Lead Gen Q3', budget: 5000, status: 'PAUSED', platform: 'META_ADS', targetAudience: 'Working Professionals 25-45', category: 'Finance', startDate: '2026-06-01', endDate: '2026-08-01' },
   { id: 4, name: 'LinkedIn B2B Push', budget: 15000, status: 'RUNNING', platform: 'LINKEDIN', targetAudience: 'C-Suite Executives', category: 'SaaS', startDate: '2026-07-01', endDate: '2026-10-01' },
   { id: 5, name: 'TikTok Brand Awareness', budget: 3000, status: 'COMPLETED', platform: 'TIKTOK', targetAudience: 'Gen Z 18-24', category: 'Fashion', startDate: '2026-05-01', endDate: '2026-06-30' },
-  { id: 6, name: 'InMobi App Installs', budget: 9000, status: 'RUNNING', platform: 'INMOBI', targetAudience: 'Android Users India', category: 'Apps', startDate: '2026-08-01', endDate: '2026-09-30' },
+  { id: 6, name: 'Taboola App Install Drive', budget: 9000, status: 'RUNNING', platform: 'TABOOLA', targetAudience: 'Android Users India', category: 'Apps', startDate: '2026-08-01', endDate: '2026-09-30' },
   { id: 7, name: 'Google Display Network', budget: 4200, status: 'DRAFT', platform: 'GOOGLE_ADS', targetAudience: 'Tech Enthusiasts', category: 'Technology', startDate: '2026-08-15', endDate: '2026-10-15' },
   { id: 8, name: 'Meta Retargeting Wave', budget: 2800, status: 'RUNNING', platform: 'META_ADS', targetAudience: 'Cart Abandoners', category: 'Retail', startDate: '2026-07-20', endDate: '2026-08-20' },
 ];

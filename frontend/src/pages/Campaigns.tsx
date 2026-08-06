@@ -6,7 +6,7 @@ import { DEMO_CAMPAIGNS, type Campaign } from '../data/demoData';
 const isDemo = () => localStorage.getItem('demo') === 'true';
 
 const PLATFORM_LABELS: Record<string, { name: string; color: string }> = {
-  INMOBI: { name: 'InMobi', color: 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30' },
+  TABOOLA: { name: 'Taboola', color: 'bg-indigo-500/15 text-indigo-400 border-indigo-500/30' },
   GOOGLE_ADS: { name: 'Google Ads', color: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/30' },
   META_ADS: { name: 'Meta Ads', color: 'bg-amber-500/15 text-amber-400 border-amber-500/30' },
   LINKEDIN: { name: 'LinkedIn', color: 'bg-blue-500/15 text-blue-400 border-blue-500/30' },
@@ -19,7 +19,7 @@ export default function Campaigns() {
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: '', budget: '', platform: 'INMOBI', targetAudience: '', category: 'General', startDate: '', endDate: ''
+    name: '', budget: '', platform: 'TABOOLA', targetAudience: '', category: 'General', startDate: '', endDate: ''
   });
 
   const fetchCampaigns = useCallback(async () => {
@@ -272,7 +272,7 @@ export default function Campaigns() {
                 <div>
                   <label className="label">Platform</label>
                   <select className="input-field bg-[#141420]" value={formData.platform} onChange={e => setFormData({...formData, platform: e.target.value})}>
-                    <option value="INMOBI">InMobi</option>
+                    <option value="TABOOLA">Taboola</option>
                     <option value="GOOGLE_ADS">Google Ads</option>
                     <option value="META_ADS">Meta Ads</option>
                     <option value="LINKEDIN">LinkedIn</option>

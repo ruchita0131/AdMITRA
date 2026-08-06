@@ -5,5 +5,5 @@ public enum Platform {
     META_ADS,
     LINKEDIN,
     TIKTOK,
-    INMOBI
+    TABOOLA
 }
