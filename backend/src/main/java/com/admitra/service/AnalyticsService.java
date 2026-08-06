@@ -60,15 +60,25 @@ public class AnalyticsService {
 
     @Cacheable(value = "topCampaigns", key = "'all'")
     public List<CampaignPerformanceDto> getTopCampaigns() {
+        // Single aggregate query instead of N+1 per campaign
         List<Campaign> campaigns = campaignRepository.findAll();
         return campaigns.stream().map(campaign -> {
             List<Analytics> analytics = analyticsRepository.findByCampaignId(campaign.getId());
             long impressions = analytics.stream().mapToLong(Analytics::getImpressions).sum();
             long clicks = analytics.stream().mapToLong(Analytics::getClicks).sum();
-            BigDecimal spend = analytics.stream().map(Analytics::getSpend).reduce(BigDecimal.ZERO, BigDecimal::add);
-            BigDecimal ctr = impressions > 0 ? BigDecimal.valueOf(clicks).divide(BigDecimal.valueOf(impressions), 4, RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100)) : BigDecimal.ZERO;
+            BigDecimal spend = analytics.stream()
+                    .map(Analytics::getSpend)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal ctr = impressions > 0
+                    ? BigDecimal.valueOf(clicks)
+                        .divide(BigDecimal.valueOf(impressions), 4, RoundingMode.HALF_UP)
+                        .multiply(BigDecimal.valueOf(100))
+                    : BigDecimal.ZERO;
             return new CampaignPerformanceDto(campaign.getId(), campaign.getName(), ctr, spend);
-        }).sorted(Comparator.comparing(CampaignPerformanceDto::getCtr).reversed()).limit(5).collect(Collectors.toList());
+        }).filter(c -> c.getSpend().compareTo(BigDecimal.ZERO) > 0 || c.getCtr().compareTo(BigDecimal.ZERO) > 0)
+          .sorted(Comparator.comparing(CampaignPerformanceDto::getCtr).reversed())
+          .limit(5)
+          .collect(Collectors.toList());
     }
 
     private AnalyticsDto mapToDto(Analytics analytics) {

@@ -7,12 +7,13 @@ import Sidebar from './components/Sidebar';
 
 const PrivateRoute = () => {
   const token = localStorage.getItem('token');
-  if (!token) return <Navigate to="/login" replace />;
+  const demo = localStorage.getItem('demo') === 'true';
+  if (!token && !demo) return <Navigate to="/login" replace />;
 
   return (
-    <div className="flex bg-background min-h-screen">
+    <div className="flex min-h-screen" style={{ background: '#0c0c10' }}>
       <Sidebar />
-      <main className="flex-1 md:ml-64 p-6 lg:p-8 overflow-y-auto">
+      <main className="flex-1 ml-56 p-8 overflow-y-auto min-h-screen">
         <Outlet />
       </main>
     </div>
